@@ -27,6 +27,7 @@ $GLOBALS['BE_MOD']['content']['news']['tables'][] = 'tl_news_category';
  * Front end modules
  */
 $GLOBALS['FE_MOD']['news']['newscategories'] = 'ModuleNewsCategories';
+$GLOBALS['FE_MOD']['news']['newscategoryheader'] = 'ModuleNewsCategoryHeader';
 
 /**
  * Content elements

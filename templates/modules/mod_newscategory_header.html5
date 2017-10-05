@@ -1,0 +1,8 @@
+<div<?php if($this->addImage): ?> style="background:url('<?= $this->image; ?>') no-repeat center;"<?php endif; ?>>
+    <h1><?php echo $this->frontendTitle; ?></h1>
+    <?php if($this->description): ?>
+    <div class="description">
+    <?php echo $this->description; ?>
+    </div>
+    <?php endif; ?>
+</div>

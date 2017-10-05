@@ -16,3 +16,4 @@
  * Front end modules
  */
 $GLOBALS['TL_LANG']['FMD']['newscategories'] = array('News categories list', 'Adds a categories list to the page.');
+$GLOBALS['TL_LANG']['FMD']['newscategoryheader'] = array('News category header', 'Adds & Displays additional "header content" to a given news category');

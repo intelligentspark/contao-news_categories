@@ -25,13 +25,28 @@ $GLOBALS['TL_LANG']['tl_news_category']['excludeInRelated']  = array('Exclude in
 $GLOBALS['TL_LANG']['tl_news_category']['jumpTo']            = array('Redirect page', 'Here you can choose the page to which visitors will be redirected when clicking a category link in the news template.');
 $GLOBALS['TL_LANG']['tl_news_category']['published']         = array('Publish category', 'Make the news category publicly visible on the website.');
 
+$GLOBALS['TL_LANG']['tl_news_category']['description']    = array('Category description', 'Here you can enter a short description of the category which can be shown in the category header.');
+$GLOBALS['TL_LANG']['tl_news_category']['meta_description']    = array('Meta description', 'Here you can enter a short description of the category which can be shown in the meta description field.');
+$GLOBALS['TL_LANG']['tl_news_category']['addImage']      = array('Add an image', 'Add an image to the content element.');
+$GLOBALS['TL_LANG']['tl_news_category']['singleSRC']     = array('Source file', 'Please select a file or folder from the files directory.');
+$GLOBALS['TL_LANG']['tl_news_category']['alt']           = array('Alternate text', 'Here you can enter an alternate text for the image (<em>alt</em> attribute).');
+$GLOBALS['TL_LANG']['tl_news_category']['size']          = array('Image width and height', 'Here you can set the image dimensions and the resize mode.');
+$GLOBALS['TL_LANG']['tl_news_category']['imagemargin']   = array('Image margin', 'Here you can enter the top, right, bottom and left margin.');
+$GLOBALS['TL_LANG']['tl_news_category']['imageUrl']      = array('Image link target', 'A custom image link target will override the lightbox link, so the image cannot be viewed fullsize anymore.');
+$GLOBALS['TL_LANG']['tl_news_category']['fullsize']      = array('Full-size view/new window', 'Open the full-size image in a lightbox or the link in a new browser window.');
+$GLOBALS['TL_LANG']['tl_news_category']['floating']      = array('Image alignment', 'Please specify how to align the image.');
+$GLOBALS['TL_LANG']['tl_news_category']['caption']       = array('Image caption', 'Here you can enter a short text that will be displayed below the image.');
+
+
 /**
  * Legends
  */
 $GLOBALS['TL_LANG']['tl_news_category']['title_legend']    = 'Title and alias';
+$GLOBALS['TL_LANG']['tl_news_category']['meta_legend']    = 'Meta information';
 $GLOBALS['TL_LANG']['tl_news_category']['modules_legend']  = 'Modules settings';
 $GLOBALS['TL_LANG']['tl_news_category']['redirect_legend'] = 'Redirect settings';
 $GLOBALS['TL_LANG']['tl_news_category']['publish_legend']  = 'Publish settings';
+$GLOBALS['TL_LANG']['tl_news_category']['image_legend']     = 'Image settings';
 
 /**
  * Buttons

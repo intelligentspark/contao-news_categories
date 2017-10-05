@@ -132,7 +132,13 @@ $GLOBALS['TL_DCA']['tl_news_category'] = array
     // Palettes
     'palettes' => array
     (
-        'default'                     => '{title_legend},title,alias,frontendTitle,cssClass;{modules_legend:hide},hideInList,hideInReader,excludeInRelated;{redirect_legend:hide},jumpTo;{publish_legend},published'
+        '__selector__'                => array('addImage'),
+        'default'                     => '{title_legend},title,alias,description,frontendTitle,cssClass;{meta_legend},meta_description;{image_legend},addImage;{modules_legend:hide},hideInList,hideInReader,excludeInRelated;{redirect_legend:hide},jumpTo;{publish_legend},published'
+    ),
+    // Subpalettes
+    'subpalettes' => array
+    (
+        'addImage'                    => 'singleSRC,alt,size,imagemargin,imageUrl,fullsize,caption,floating',
     ),
 
     // Fields
@@ -163,6 +169,25 @@ $GLOBALS['TL_DCA']['tl_news_category'] = array
             'eval'                    => array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
+        'description'   => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_news_category']['description'],
+            'exclude'                 => true,
+            'search'                  => true,
+            'inputType'               => 'textarea',
+            'eval'                    => array('mandatory'=>false, 'rte'=>'tinyMCE', 'helpwizard'=>true),
+            'explanation'             => 'insertTags',
+            'sql'                     => "mediumtext NULL"
+        ),
+        'meta_description' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_news_category']['meta_description'],
+            'exclude'                 => true,
+            'inputType'               => 'textarea',
+            'search'                  => true,
+            'eval'                    => array('style'=>'height:60px', 'decodeEntities'=>true, 'tl_class'=>'clr'),
+            'sql'                     => "text NULL"
+        ),
         'frontendTitle' => array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_news_category']['frontendTitle'],
@@ -184,6 +209,99 @@ $GLOBALS['TL_DCA']['tl_news_category'] = array
                 array('tl_news_category', 'generateAlias')
             ),
             'sql'                     => "varbinary(128) NOT NULL default ''"
+        ),
+        'addImage' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_news_category']['addImage'],
+            'exclude'                 => true,
+            'inputType'               => 'checkbox',
+            'eval'                    => array('submitOnChange'=>true),
+            'sql'                     => "char(1) NOT NULL default ''"
+        ),
+        'singleSRC' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_news_category']['singleSRC'],
+            'exclude'                 => true,
+            'inputType'               => 'fileTree',
+            'eval'                    => array('filesOnly'=>true, 'fieldType'=>'radio', 'mandatory'=>true, 'tl_class'=>'clr'),
+            'load_callback' => array
+            (
+                array('tl_news_category', 'setSingleSrcFlags')
+            ),
+            'save_callback' => array
+            (
+                array('tl_news_category', 'storeFileMetaInformation')
+            ),
+            'sql'                     => "binary(16) NULL"
+        ),
+        'alt' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_news_category']['alt'],
+            'exclude'                 => true,
+            'search'                  => true,
+            'inputType'               => 'text',
+            'eval'                    => array('maxlength'=>255, 'tl_class'=>'w50'),
+            'sql'                     => "varchar(255) NOT NULL default ''"
+        ),
+        'size' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_news_category']['size'],
+            'exclude'                 => true,
+            'inputType'               => 'imageSize',
+            'options'                 => System::getImageSizes(),
+            'reference'               => &$GLOBALS['TL_LANG']['MSC'],
+            'eval'                    => array('rgxp'=>'natural', 'includeBlankOption'=>true, 'nospace'=>true, 'helpwizard'=>true, 'tl_class'=>'w50'),
+            'sql'                     => "varchar(64) NOT NULL default ''"
+        ),
+        'imagemargin' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_news_category']['imagemargin'],
+            'exclude'                 => true,
+            'inputType'               => 'trbl',
+            'options'                 => $GLOBALS['TL_CSS_UNITS'],
+            'eval'                    => array('includeBlankOption'=>true, 'tl_class'=>'w50'),
+            'sql'                     => "varchar(128) NOT NULL default ''"
+        ),
+        'imageUrl' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_news_category']['imageUrl'],
+            'exclude'                 => true,
+            'search'                  => true,
+            'inputType'               => 'text',
+            'eval'                    => array('rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>255, 'fieldType'=>'radio', 'filesOnly'=>true, 'tl_class'=>'w50 wizard'),
+            'wizard' => array
+            (
+                array('tl_news_category', 'pagePicker')
+            ),
+            'sql'                     => "varchar(255) NOT NULL default ''"
+        ),
+        'fullsize' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_news_category']['fullsize'],
+            'exclude'                 => true,
+            'inputType'               => 'checkbox',
+            'eval'                    => array('tl_class'=>'w50 m12'),
+            'sql'                     => "char(1) NOT NULL default ''"
+        ),
+        'caption' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_news_category']['caption'],
+            'exclude'                 => true,
+            'search'                  => true,
+            'inputType'               => 'text',
+            'eval'                    => array('maxlength'=>255, 'allowHtml'=>true, 'tl_class'=>'w50'),
+            'sql'                     => "varchar(255) NOT NULL default ''"
+        ),
+        'floating' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_news_category']['floating'],
+            'default'                 => 'above',
+            'exclude'                 => true,
+            'inputType'               => 'radioTable',
+            'options'                 => array('above', 'left', 'right', 'below'),
+            'eval'                    => array('cols'=>4, 'tl_class'=>'w50'),
+            'reference'               => &$GLOBALS['TL_LANG']['MSC'],
+            'sql'                     => "varchar(32) NOT NULL default ''"
         ),
         'cssClass' => array
         (
@@ -412,5 +530,68 @@ class tl_news_category extends Backend
 
         $objVersions->create();
         $this->log('A new version of record "tl_news_category.id='.$intId.'" has been created'.$this->getParentEntries('tl_news_category', $intId), __METHOD__, TL_GENERAL);
+    }
+
+    /**
+     * Dynamically add flags to the "singleSRC" field
+     *
+     * @param mixed         $varValue
+     * @param DataContainer $dc
+     *
+     * @return mixed
+     */
+    public function setSingleSrcFlags($varValue, DataContainer $dc)
+    {
+        if ($dc->activeRecord)
+        {
+            switch ($dc->activeRecord->type)
+            {
+                case 'text':
+                case 'hyperlink':
+                case 'image':
+                case 'accordionSingle':
+                    $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] = Config::get('validImageTypes');
+                    break;
+
+                case 'download':
+                    $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['extensions'] = Config::get('allowedDownload');
+                    break;
+            }
+        }
+
+        return $varValue;
+    }
+
+
+
+    /**
+     * Pre-fill the "alt" and "caption" fields with the file meta data
+     *
+     * @param mixed         $varValue
+     * @param DataContainer $dc
+     *
+     * @return mixed
+     */
+    public function storeFileMetaInformation($varValue, DataContainer $dc)
+    {
+        if ($dc->activeRecord->singleSRC != $varValue)
+        {
+            $this->addFileMetaInformationToRequest($varValue, ($dc->activeRecord->ptable ?: 'tl_article'), $dc->activeRecord->pid);
+        }
+
+        return $varValue;
+    }
+
+
+    /**
+     * Return the link picker wizard
+     *
+     * @param DataContainer $dc
+     *
+     * @return string
+     */
+    public function pagePicker(DataContainer $dc)
+    {
+        return ' <a href="' . (($dc->value == '' || strpos($dc->value, '{{link_url::') !== false) ? 'contao/page.php' : 'contao/file.php') . '?do=' . Input::get('do') . '&amp;table=' . $dc->table . '&amp;field=' . $dc->field . '&amp;value=' . rawurlencode(str_replace(array('{{link_url::', '}}'), '', $dc->value)) . '&amp;switch=1' . '" title="' . specialchars($GLOBALS['TL_LANG']['MSC']['pagepicker']) . '" onclick="Backend.getScrollOffset();Backend.openModalSelector({\'width\':768,\'title\':\'' . specialchars(str_replace("'", "\\'", $GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['label'][0])) . '\',\'url\':this.href,\'id\':\'' . $dc->field . '\',\'tag\':\'ctrl_'. $dc->field . ((Input::get('act') == 'editAll') ? '_' . $dc->id : '') . '\',\'self\':this});return false">' . Image::getHtml('pickpage.gif', $GLOBALS['TL_LANG']['MSC']['pagepicker'], 'style="vertical-align:top;cursor:pointer"') . '</a>';
     }
 }

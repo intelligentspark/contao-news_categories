@@ -36,6 +36,7 @@ ClassLoader::addClasses(array
 
     // Modules
     'NewsCategories\ModuleNewsCategories'          => 'system/modules/news_categories/modules/ModuleNewsCategories.php',
+    'NewsCategories\ModuleNewsCategoryHeader'      => 'system/modules/news_categories/modules/ModuleNewsCategoryHeader.php',
     'NewsCategories\ModuleNewsArchive'             => 'system/modules/news_categories/modules/ModuleNewsArchive.php',
     'NewsCategories\ModuleNewsList'                => 'system/modules/news_categories/modules/ModuleNewsList.php',
     'NewsCategories\ModuleNewsMenu'                => 'system/modules/news_categories/modules/ModuleNewsMenu.php',
@@ -48,6 +49,7 @@ TemplateLoader::addFiles(array
 (
     // Modules
     'mod_newscategories' => 'system/modules/news_categories/templates/modules',
+    'mod_newscategory_header' => 'system/modules/news_categories/templates/modules',
 
     // Navigation
     'nav_newscategories' => 'system/modules/news_categories/templates/navigation',
